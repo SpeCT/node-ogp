@@ -1,0 +1,18 @@
+{
+	"name": "ogp-example",
+	"description": "node-ogp library usage example",
+	"private": true,
+	"version": "1.0.0",
+	"author": "Yury Proshchenko <spect.man@gmail.com>",
+	"contributors": [ 
+		{ "name": "Yury Proshchenko", "email": "spect.man@gmail.com" }
+	],
+	"keywords": ["open graph", "opengraph", "ogp"],
+	"main": "./app.js",
+	"engines": { "node": ">= 0.2.0" },
+
+	"dependencies": {
+		"jsdom": "*",
+		"ogp": "0.0.x"
+	}
+}

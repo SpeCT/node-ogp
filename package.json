@@ -1,0 +1,22 @@
+{
+	"name": "ogp",
+	"description": "Parse Open Graph meta tags from jsdom generated DOM",
+	"version": "0.0.1",
+	"author": "Yury Proshchenko <spect.man@gmail.com>",
+	"contributors": [ 
+		{ "name": "Yury Proshchenko", "email": "spect.man@gmail.com" }
+	],
+	"keywords": ["open graph", "opengraph", "ogp"],
+	"main": "./lib/ogp.js",
+	"directories": {
+		"lib": "./lib",
+		"example": "./example"
+	},
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/SpeCT/node-ogp.git",
+		"web" : "http://github.com/SpeCT/node-ogp"
+	},
+	"bugs": "http://github.com/SpeCT/node-ogp/issues",
+	"engines": { "node": ">= 0.2.0" }
+}
