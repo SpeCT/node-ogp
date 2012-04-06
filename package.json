@@ -1,7 +1,7 @@
 {
 	"name": "ogp",
 	"description": "Parse Open Graph meta tags from jsdom generated DOM",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Yury Proshchenko <spect.man@gmail.com>",
 	"contributors": [ 
 		{ "name": "Yury Proshchenko", "email": "spect.man@gmail.com" }

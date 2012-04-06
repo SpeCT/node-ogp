@@ -34,12 +34,18 @@ jsdom.env({ html: url, done: function(error, window) {
 
 This will put next structure into stdout:
 
-```
+```javascript
 { url: 'http://www.imdb.com/title/tt0068646/',
   title: 'The Godfather (1972)',
   type: 'video.movie',
   image: 'http://ia.media-imdb.com/images/M/MV5BMTIyMTIxNjI5NF5BMl5BanBnXkFtZTcwNzQzNDM5MQ@@._V1._SX97_SY140_.jpg',
   site_name: 'IMDb' }
+```
+
+In case if some of OpenGraph tags were presented multiple times (few image tags for example, output structure field related to that tag will be converted into array:
+
+```javascript
+{ image: ['image1.png', 'image2.png']}
 ```
 
 ## Credits
