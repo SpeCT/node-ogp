@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Node-ogp by SpeCT</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Node-ogp</h1>
+        <p>Parse Open Graph meta tags from jsdom generated DOM</p>
+        <p class="view"><a href="https://github.com/SpeCT/node-ogp">View the Project on GitHub <small>SpeCT/node-ogp</small></a></p>
+        <ul>
+          <li><a href="https://github.com/SpeCT/node-ogp/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/SpeCT/node-ogp/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/SpeCT/node-ogp">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>node-ogp</h1>
+
+<p>Easy way to access OpenGraph meta tags from jsdom parsed web page</p>
+
+<h2>Installation</h2>
+
+<p>Via <a href="http://search.npmjs.org/#/ogp">npm</a>:</p>
+
+<pre><code>$ npm install ogp
+</code></pre>
+
+<p>As a submodule of your project</p>
+
+<pre><code>$ git submodule add <a href="http://github.com/SpeCT/node-ogp.git">http://github.com/SpeCT/node-ogp.git</a> ogp
+$ git submodule update --init
+</code></pre>
+
+<h2>Usage</h2>
+
+<div class="highlight">
+<pre><span class="c1">// 1. load node-ogp</span>
+<span class="kd">var</span> <span class="nx">ogp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'ogp'</span><span class="p">)</span>
+
+<span class="c1">// 2. parse DOM using jsdom</span>
+<span class="kd">var</span> <span class="nx">jsdom</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'jsdom'</span><span class="p">),</span>
+    <span class="nx">url</span> <span class="o">=</span> <span class="s1">'<a href="http://www.imdb.com/title/tt0068646/">http://www.imdb.com/title/tt0068646/</a>'</span>
+
+<span class="nx">jsdom</span><span class="p">.</span><span class="nx">env</span><span class="p">({</span> <span class="nx">html</span><span class="o">:</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">done</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nb">window</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// 3. pass window as the only argument to ogp.parse method</span>
+    <span class="kd">var</span> <span class="nx">ogData</span> <span class="o">=</span> <span class="nx">ogp</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span>
+
+    <span class="c1">// 5. Profit!</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Open Graph data'</span><span class="p">,</span> <span class="nx">ogData</span><span class="p">)</span>
+<span class="p">}})</span>
+</pre>
+</div>
+
+
+<p>This will put next structure into stdout:</p>
+
+<div class="highlight">
+<pre><span class="p">{</span> <span class="nx">url</span><span class="o">:</span> <span class="s1">'<a href="http://www.imdb.com/title/tt0068646/">http://www.imdb.com/title/tt0068646/</a>'</span><span class="p">,</span>
+  <span class="nx">title</span><span class="o">:</span> <span class="s1">'The Godfather (1972)'</span><span class="p">,</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">'video.movie'</span><span class="p">,</span>
+  <span class="nx">image</span><span class="o">:</span> <span class="s1">'<a href="http://ia.media-imdb.com/images/M/MV5BMTIyMTIxNjI5NF5BMl5BanBnXkFtZTcwNzQzNDM5MQ@@._V1._SX97_SY140_.jpg">http://ia.media-imdb.com/images/M/MV5BMTIyMTIxNjI5NF5BMl5BanBnXkFtZTcwNzQzNDM5MQ@@._V1._SX97_SY140_.jpg</a>'</span><span class="p">,</span>
+  <span class="nx">site_name</span><span class="o">:</span> <span class="s1">'IMDb'</span> <span class="p">}</span>
+</pre>
+</div>
+
+
+<p>In case if some of OpenGraph tags were presented multiple times (few image tags for example, output structure field related to that tag will be converted into array:</p>
+
+<div class="highlight">
+<pre><span class="p">{</span> <span class="nx">image</span><span class="o">:</span> <span class="p">[</span><span class="s1">'image1.png'</span><span class="p">,</span> <span class="s1">'image2.png'</span><span class="p">]}</span>
+</pre>
+</div>
+
+
+<h2>Credits</h2>
+
+<p>Written and maintained by <a href="mailto:spect.man@gmail.com">Yury Proshchenko</a>.</p>
+
+<h2>License</h2>
+
+<p>The MIT License</p>
+
+<p>Copyright (c) 2011 Yury Proshchenko (spect.man@gmail.com)</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/SpeCT">SpeCT</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-30855580-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
