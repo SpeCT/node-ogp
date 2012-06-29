@@ -1,10 +1,11 @@
 {
 	"name": "ogp",
 	"description": "Parse Open Graph meta tags from jsdom generated DOM",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"author": "Yury Proshchenko <spect.man@gmail.com>",
 	"contributors": [ 
-		{ "name": "Yury Proshchenko", "email": "spect.man@gmail.com" }
+		{ "name": "Yury Proshchenko", "email": "spect.man@gmail.com" },
+    { "name": "Cody Craven", "email": "cody@cravencode.com", "url": "https://github.com/codycraven" }
 	],
 	"keywords": ["open graph", "opengraph", "ogp"],
 	"main": "./lib/ogp.js",

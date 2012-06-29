@@ -23,34 +23,42 @@ var jsdom = require('jsdom'),
     url = 'http://www.imdb.com/title/tt0068646/'
 
 jsdom.env({ html: url, done: function(error, window) {
+  // 3. pass window as the only argument to ogp.parse method
+  var ogData = ogp.parse(window)
 
-	// 3. pass window as the only argument to ogp.parse method
-	var ogData = ogp.parse(window)
+  // ogp.parse can also parse Open Graph properties for any namespaces desired.
+  //
+  // To match og and fb namespaces the following could be done:
+  //   var ogData = ogp.parse(window, 'og fb')
+  // or:
+  //   var ogData = ogp.parse(wondow, ['og', 'fb'])
 
-	// 5. Profit!
-	console.log('Open Graph data', ogData)
+  // 5. Profit!
+  console.log('Open Graph data', ogData)
 }})
 ```
 
 This will put next structure into stdout:
 
 ```javascript
-{ url: 'http://www.imdb.com/title/tt0068646/',
-  title: 'The Godfather (1972)',
-  type: 'video.movie',
-  image: 'http://ia.media-imdb.com/images/M/MV5BMTIyMTIxNjI5NF5BMl5BanBnXkFtZTcwNzQzNDM5MQ@@._V1._SX97_SY140_.jpg',
-  site_name: 'IMDb' }
+{ 'og:url': 'http://www.imdb.com/title/tt0068646/',
+  'og:title': 'The Godfather (1972)',
+  'og:type': 'video.movie',
+  'og:image': 'http://ia.media-imdb.com/images/M/MV5BMTIyMTIxNjI5NF5BMl5BanBnXkFtZTcwNzQzNDM5MQ@@._V1._SX97_SY140_.jpg',
+  'og:site_name': 'IMDb' }
 ```
 
 In case if some of OpenGraph tags were presented multiple times (few image tags for example, output structure field related to that tag will be converted into array:
 
 ```javascript
-{ image: ['image1.png', 'image2.png']}
+{ 'og:image': ['image1.png', 'image2.png']}
 ```
 
 ## Credits
 
 Written and maintained by [Yury Proshchenko](mailto:spect.man@gmail.com).
+
+Multiple namespace support by [Cody Craven](http://github.com/codycraven).
 
 ## License
 
